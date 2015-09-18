@@ -1,19 +1,18 @@
-var seats = require('../seats.js')
-
-
+var seats = require('../seats.js');
 function swapper(seats) {
-  var evensReversed = [];
-  var oddsReversed = [];
+  var final = [];
   for (var i = 0; i < seats.length; i++) {
-    if ( i % 2 == 0) {
-      evensReversed.unshift(seats[i]);
+    if ( i == seats.length - 1 ) {
+      final[0] = seats[i];
+    } else if (i === 1) {
+      final[(seats.length - 2)] = seats[i];
+    } else if ( i % 2 == 0) {
+      final[ i + 2 ] = seats[i];
     } else {
-      oddsReversed.unshift(seats[i]);
+      final[ i - 2 ] = seats[i];
     }
   }
-  var final = evensReversed.concat(oddsReversed);
   return final;
-};
-
+}
 var reseating = swapper(seats);
 console.log(reseating);
